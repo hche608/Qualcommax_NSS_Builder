@@ -104,6 +104,11 @@ jobs:
       - name: Build the firmware image
         run: make world V=s -j$(nproc)
 
+      - name: Copy config files to build output
+        run: |
+          mkdir -p bin/targets/qualcommax/ipq807x/firmware
+          cp .config bin/targets/qualcommax/ipq807x/firmware/final.config
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
